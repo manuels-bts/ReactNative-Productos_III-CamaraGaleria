@@ -4,6 +4,7 @@ import { Text, View, FlatList, StyleSheet, TouchableOpacity, RefreshControl } fr
 import { StackScreenProps } from '@react-navigation/stack';
 import { ProductsContext } from '../context/ProductsContext';
 import { ProductsStackParams } from '../navigation/ProductsNavigator';
+import { ProductRow } from '../components/ProductRow';
 
 interface Props extends StackScreenProps<ProductsStackParams, 'ProductsScreen'> { };
 
@@ -40,20 +41,12 @@ export const ProductsScreen = ({ navigation }: Props) => {
             <FlatList
                 data={products}
                 keyExtractor={(p) => p._id}
-
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        activeOpacity={0.8}
-                        onPress={
-                            () => navigation.navigate('ProductScreen', {
-                                id: item._id,
-                                name: item.nombre
-                            })
-                        }
-                    >
-                        <Text style={styles.productName}>{item.nombre}</Text>
-                    </TouchableOpacity>
-                )}
+                renderItem={({ item }) => <ProductRow producto={item} onTap={() =>
+                    navigation.navigate('ProductScreen', {
+                        id: item._id,
+                        name: item.nombre
+                    })
+                } />}
 
                 ItemSeparatorComponent={() => (
                     <View style={styles.itemSeparator} />

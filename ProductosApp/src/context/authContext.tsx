@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: any) => {
 
     useEffect(() => {
         logOut() // TODO: quitar aunque ahorita asi jala x el issue
-        // checkToken()
+        checkToken()
 
     }, [])
 

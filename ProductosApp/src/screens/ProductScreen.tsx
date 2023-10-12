@@ -11,8 +11,6 @@ import { ProductsStackParams } from '../navigation/ProductsNavigator';
 import { useCategories } from '../hooks/useCategories';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
-
-
 interface Props extends StackScreenProps<ProductsStackParams, 'ProductScreen'> { };
 
 export const ProductScreen = ({ navigation, route }: Props) => {
@@ -204,13 +202,13 @@ const styles = StyleSheet.create({
         marginHorizontal: 20
     },
     label: {
-        fontSize: 18
+        fontSize: 20
     },
     textInput: {
         borderWidth: 1,
         paddingHorizontal: 10,
         paddingVertical: 5,
-        borderRadius: 20,
+        borderRadius: 5,
         borderColor: 'rgba(0,0,0,0.2)',
         height: 45,
         marginTop: 5,
