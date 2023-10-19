@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 100,
         borderColor: 'silver',
-        borderWidth: 0.5
+        borderWidth: 0.5,
     }
 });

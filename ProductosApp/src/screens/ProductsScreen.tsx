@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Text, View, FlatList, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
+import { Text, View, FlatList, StyleSheet, TouchableOpacity, RefreshControl, Image } from 'react-native'
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { ProductsContext } from '../context/ProductsContext';
 import { ProductsStackParams } from '../navigation/ProductsNavigator';
 import { ProductRow } from '../components/ProductRow';
+import { AuthContext } from '../context/authContext';
 
 interface Props extends StackScreenProps<ProductsStackParams, 'ProductsScreen'> { };
 
@@ -12,18 +13,37 @@ export const ProductsScreen = ({ navigation }: Props) => {
 
     const [isRefreshing, setIsRefreshing] = useState(false);
     const { products, loadProducts } = useContext(ProductsContext);
+    const { logOut } = useContext(AuthContext);
 
     useEffect(() => {
 
         navigation.setOptions({
             headerRight: () => (
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={{ marginRight: 10 }}
-                    onPress={() => navigation.navigate('ProductScreen', {})}
-                >
-                    <Text>Agregar </Text>
-                </TouchableOpacity>
+                // Add and Logout buttons
+                <View style={{ flexDirection: 'row' }}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={{ marginRight: 10 }}
+                        onPress={() => navigation.navigate('ProductScreen', {})}
+                    >
+                        <Image
+                            source={{ uri: 'https://www.iconarchive.com/download/i103469/paomedia/small-n-flat/sign-add.1024.png' }}
+                            style={{ width: 30, height: 30, right: 8 }}
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={{ marginRight: 10 }}
+                        onPress={logOut}
+                    >
+                        {/* <Text>Agregar 2</Text> */}
+                        <Image
+                            source={{ uri: 'https://creazilla-store.fra1.digitaloceanspaces.com/icons/5628149/exit-icon-md.png' }}
+                            style={{ width: 30, height: 30, right: 8 }}
+                        />
+                    </TouchableOpacity>
+                </View>
             )
         })
 
