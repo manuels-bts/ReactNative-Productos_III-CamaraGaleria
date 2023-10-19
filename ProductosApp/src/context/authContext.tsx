@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }: any) => {
     const [state, dispatch] = useReducer(authReducer, authInitialState);
 
     useEffect(() => {
-        logOut() // TODO: quitar aunque ahorita asi jala x el issue
         checkToken()
 
     }, [])
